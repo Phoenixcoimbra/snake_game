@@ -12,9 +12,15 @@ document.addEventListener('DOMContentLoaded', () => {
   
     function direction(event) {
       const key = event.key;
-      if (key.startsWith('Arrow') && key !== 'Arrow' + oppositeDirection(d)) {
-        d = key.slice(5);
-      }
+
+      if (key.startsWith('Arrow')) {
+        const dir = key.slice(5).toUpperCase();
+        if (dir !== oppositeDirection(d)) {
+            d = dir;
+        }
+    }
+      console.log(event.key);
+
     }
   
     function oppositeDirection(dir) {
@@ -59,9 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
   
       snake.unshift(newHead);
   
-      ctx.fillStyle = 'white';
+      ctx.fillStyle = 'blue';
       ctx.font = '45px Changa One';
-      ctx.fillText(score, 2 * box, 1.6 * box);
+      //ctx.fillText(score, 2 * box, 1.6 * box);
+      document.getElementById('score').innerText = score;
     }
   
     function isOutOfBounds({ x, y }) {
@@ -71,5 +78,3 @@ document.addEventListener('DOMContentLoaded', () => {
     const game = setInterval(draw, 100);
   });
 
- 
-  
