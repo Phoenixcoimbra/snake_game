@@ -78,3 +78,50 @@ document.addEventListener('DOMContentLoaded', () => {
     const game = setInterval(draw, 100);
   });
 
+// Responsive Canvas
+const canvas = document.getElementById('gameCanvas');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+// Touch Controls
+let touchStartX = null;
+let touchStartY = null;
+
+canvas.addEventListener('touchstart', function(e) {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+}, false);
+
+canvas.addEventListener('touchmove', function(e) {
+    if (!touchStartX || !touchStartY) {
+        return;
+    }
+
+    let xUp = e.touches[0].clientX;
+    let yUp = e.touches[0].clientY;
+
+    let xDiff = touchStartX - xUp;
+    let yDiff = touchStartY - yUp;
+
+    if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        if (xDiff > 0 && d != "RIGHT") {
+            /* left swipe */
+            d = "LEFT";
+        } else if (xDiff < 0 && d != "LEFT") {
+            /* right swipe */
+            d = "RIGHT";
+        }
+    } else {
+        if (yDiff > 0 && d != "DOWN") {
+            /* up swipe */
+            d = "UP";
+        } else if (yDiff < 0 && d != "UP") {
+            /* down swipe */
+            d = "DOWN";
+        }
+    }
+
+    /* reset values */
+    touchStartX = null;
+    touchStartY = null;
+}, false);
