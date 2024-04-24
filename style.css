@@ -34,3 +34,27 @@ h1 {
   font-size: 36px;
   margin-top: 20px;
 }
+
+button {
+  font-size: 20px;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #f02727;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.score {
+  font-size: 40px;
+  margin-top: 40px;
+  font-weight: bold;
+  align-self: left;
+}
+
+.highscore {
+  font-size: 40px;
+  margin-top: 40px;
+  font-weight: bold;
+  align-self: right;
+}
